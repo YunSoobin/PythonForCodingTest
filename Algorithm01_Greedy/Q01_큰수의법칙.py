@@ -8,7 +8,7 @@
 import time
 start_time = time.time()
 
-N, M, K = list(map(int, input().split()))
+N, M, K = map(int, input().split())
 num_list = list(map(int, input().split()))
 
 num_list.sort(reverse=True)
