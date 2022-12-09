@@ -1,0 +1,36 @@
+now = input()
+
+x = now[0]
+y = now[1]
+
+if x == 'a':
+  x = 1
+elif x == 'b':
+  x = 2
+elif x == 'c':
+  x = 3
+elif x == 'd':
+  x = 4
+elif x == 'e':
+  x = 5
+elif x == 'f':
+  x = 6
+elif x == 'g':
+  x = 7
+elif x == 'h':
+  x = 8
+
+x = int(x)
+y = int(y)
+
+dx = [-1, +1, -1, +1, -2, -2, +2, +2]
+dy = [-2, -2, +2, +2, -1, +1, -1, +1]
+
+count = 0
+for i in range(8):
+  nx = x + dx[i]
+  ny = y + dy[i]
+  if 0 < nx < 9 and 0 < ny < 9:
+    count += 1
+
+print(count)
