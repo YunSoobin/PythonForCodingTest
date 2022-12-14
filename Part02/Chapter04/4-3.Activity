@@ -1,0 +1,47 @@
+N, M = map(int, input().split())
+A, B, d = map(int, input().split())
+
+info = [list(map(int, input().split())) for _ in range(N)]
+
+dx = [-1, 0, 1, 0]
+dy = [0, 1, 0, -1]
+
+def turn_left():
+  global d
+  d -= 1
+  if d == -1:
+    d = 3
+
+turn = 0
+info[A][B] = 2
+
+
+while True:
+  if turn == 4:
+    nx = A - dx[d]
+    ny = B - dy[d]
+    if info[nx][ny] == 2:
+      A = nx
+      B = ny
+      continue
+    else:
+      break
+
+  turn_left()
+  nx = A + dx[d]
+  ny = B + dy[d]
+  if info[nx][ny] == 0:
+    A = nx
+    B = ny
+    info[A][B] = 2
+    turn = 0
+  else:
+    turn += 1
+
+count = 0
+for i in range(N):
+  for j in range(M):
+    if info[i][j] == 2:
+      count += 1
+
+print(count)
