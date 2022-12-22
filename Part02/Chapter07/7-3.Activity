@@ -1,0 +1,20 @@
+N, M = map(int, input().split())
+array = list(map(int, input().split()))
+
+start = min(array)
+end = max(array)
+while start <= end:
+  height = (start + end) // 2
+  
+  left = 0
+  for i in array:
+    if i > height:
+      left += (i - height)
+
+  if left < M:
+    end = height - 1
+  else:
+    result = height
+    start = height + 1
+
+print(result)
