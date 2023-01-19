@@ -1,0 +1,35 @@
+N, M = map(int, input().split())
+
+INF = int(1e9)
+graph = [[INF] * (N + 1) for _ in range(N + 1)]
+for i in range(1, N + 1):
+  graph[i][i] = 0
+
+city = []
+
+for _ in range(M):
+  a, b = map(int, input().split())
+  city.append((a, b))
+
+  graph[a][b] = 1
+  graph[b][a] = 1
+
+X, K = map(int, input().split())  
+
+for i in range(2, N + 1):
+  if graph[1][i] + graph[i][K] < graph[1][K]:
+    graph[1][K] = graph[1][i] + graph[i][K]
+    graph[K][1] = graph[1][i] + graph[i][K]
+
+for i in range(1, N + 1):
+  if i == K:
+    continue
+  if graph[K][i] + graph[i][X] < graph[K][X]:
+    graph[K][X] = graph[K][i] + graph[i][X]
+    graph[X][K] = graph[K][i] + graph[i][X]
+    
+count = graph[1][K] + graph[K][X]
+if count >= int(1e9):
+  print(-1)
+else:
+  print(count)
